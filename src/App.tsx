@@ -7,12 +7,14 @@ function App() {
 
   
   return (
-    <>
-      <input onChange={e => setnewTodo(e.target.value)} />
-      <button onClick={() => setTodos([...todos,newTodo]) setnewTodo("")}>Submit</button>
+    <div className="container" >
+      <div className="form">
+      <input  className="todo-input" value={newTodo} onChange={e => setnewTodo(e.target.value)} />
+      <button className="todo-button" onClick={() => {if (newTodo) { setTodos([...todos,newTodo]); setnewTodo("");}}}>Submit</button>
+      </div>
 
-      {todos.map((todo)=>{return <li>{todo}</li>})}
-    </>
+      {todos.map((todo)=>{return <div className="todo-item"><button className="delete-button" onClick={()=>{setTodos(todos.filter(t => t!==todo))}}>X</button> <li>{todo}</li></div>})}
+    </div>
   )
 }
 
